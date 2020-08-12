@@ -7,7 +7,7 @@ from torchvision.datasets.mnist import MNIST
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 
-use_gpu = 1
+use_gpu = 0
 
 data_train = MNIST('./data/mnist',
                    download=True,
@@ -20,9 +20,9 @@ data_test = MNIST('./data/mnist',
                   transform=transforms.Compose([
                       transforms.Resize((32, 32)),
                       transforms.ToTensor()]))
-data_train_loader = DataLoader(data_train, batch_size=512, shuffle=True, num_workers=8)
-data_test_loader = DataLoader(data_test, batch_size=1024, num_workers=8)
-
+data_train_loader = DataLoader(data_train, batch_size=100, shuffle=True, num_workers=0)
+data_test_loader = DataLoader(data_test, batch_size=200, num_workers=0)
+# batch_size 512       1024
 net = LeNet5()
 
 if use_gpu:
